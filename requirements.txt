@@ -1,0 +1,1 @@
+stockquotes==2.0.1
