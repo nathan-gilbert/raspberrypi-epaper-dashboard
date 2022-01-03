@@ -1,15 +1,11 @@
 import yfinance as yf
 
 
-def get_adbe():
-    # define the ticker symbol
-    tickerSymbol = 'ADBE'
-
-    # get data on this ticker
-    tickerData = yf.Ticker(tickerSymbol)
-
-    print(tickerData.info["currentPrice"])
+def get_stock_price(ticker_symbol: str = "ADBE") -> float:
+    ticker_data = yf.Ticker(ticker_symbol)
+    return ticker_data.info["currentPrice"]
 
 
 if __name__ == "__main__":
-    adbe = get_adbe()
+    adobe_price = get_stock_price()
+    print(adobe_price)
