@@ -3,7 +3,7 @@
 # File              : update_display.py
 # Author            : Nathan Gilbert <nathan.gilbert@gmail.com>
 # Date              : 01.23.2022 16:28:48
-# Last Modified Date: 01.23.2022 16:39:52
+# Last Modified Date: 01.23.2022 16:55:37
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 import sys
@@ -34,6 +34,7 @@ try:
     logging.info("init and clear")
     epd.init()
     epd.Clear(0xFF)
+    font12 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 12)
     font18 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 18)
     font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
     font34 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 34)
@@ -44,13 +45,14 @@ try:
     Limage = Image.new('1', (epd.width, epd.height), 255)
     draw = ImageDraw.Draw(Limage)
     current_time = datetime.datetime.now()
-    formatted_time = current_time.strftime("%d %a %b")
-    draw.text((2, 0), formatted_time, font=font34, fill=0)
+    formatted_date = current_time.strftime("%d %a %b")
+    draw.text((2, 0), formatted_date, font=font34, fill=0)
     draw.text((5, 35), "ADBE: $" + str(adbe), font=font24, fill=0)
     offset = 0
     for q in aqi:
-        draw.text((5, 50 + offset), q, font=font18, fill=0)
-        offset += 10
+        draw.text((5, 70 + offset), q, font=font18, fill=0)
+        offset += 15
+    draw.text((90, 70 + offset + 80), current_time.strftime("%I:%M %p"), font=font12, fill=0)
     epd.display(epd.getbuffer(Limage))
 
 except IOError as e:
