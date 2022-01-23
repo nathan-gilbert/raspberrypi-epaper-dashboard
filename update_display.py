@@ -7,47 +7,40 @@ libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), './lib')
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
+import datetime
 import logging
 from waveshare_epd import epd2in7
-import time
 from PIL import Image,ImageDraw,ImageFont
-import traceback
+
+from weather_air import get_air_quality
+from get_stock_quotes import get_stock_price
 
 logging.basicConfig(level=logging.DEBUG)
 
 try:
+    adbe = get_stock_price('ADBE')
 
-    logging.info("epd2in7 Demo")
+    logging.info("epd2in7 Dashboard")
     epd = epd2in7.EPD()
 
     '''2Gray(Black and white) display'''
-    logging.info("init and Clear")
+    logging.info("init and clear")
     epd.init()
     epd.Clear(0xFF)
-    font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
     font18 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 18)
+    font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
     font34 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 34)
 
     # Drawing on the Vertical image
     logging.info("2.Drawing on the Vertical image...")
-    Limage = Image.new('1', (epd.width, epd.height), 255)  # 255: clear the frame
+    # 255: clear the frame
+    Limage = Image.new('1', (epd.width, epd.height), 255)
     draw = ImageDraw.Draw(Limage)
-    draw.text((2, 0), 'hello world', font = font34, fill = 0)
-    draw.line((10, 90, 60, 140), fill = 0)
-    draw.line((60, 90, 10, 140), fill = 0)
-    draw.rectangle((10, 90, 60, 140), outline = 0)
-    draw.line((95, 90, 95, 140), fill = 0)
-    draw.line((70, 115, 120, 115), fill = 0)
-    draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
-    draw.rectangle((10, 150, 60, 200), fill = 0)
-    draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
+    current_time = datetime.datetime.now()
+    formatted_time = current_time.strftime("%d %a %b")
+    draw.text((2, 0), formatted_time, font=font34, fill=0)
+    draw.text((2, 0), adbe, font=font24, fill=0)
     epd.display(epd.getbuffer(Limage))
-    #time.sleep(2)
-
-    #logging.info("Clear...")
-    #epd.Clear(0xFF)
-    #logging.info("Goto Sleep...")
-    #epd.sleep()
 
 except IOError as e:
     logging.info(e)
