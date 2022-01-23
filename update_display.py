@@ -25,6 +25,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 try:
     adbe = get_stock_price('ADBE')
+    aqi = get_air_quality()
 
     logging.info("epd2in7 Dashboard")
     epd = epd2in7.EPD()
@@ -46,6 +47,10 @@ try:
     formatted_time = current_time.strftime("%d %a %b")
     draw.text((2, 0), formatted_time, font=font34, fill=0)
     draw.text((5, 35), "ADBE: $" + str(adbe), font=font24, fill=0)
+    offset = 0
+    for q in aqi:
+        draw.text((5, 50 + offset), q, font=font18, fill=0)
+        offset += 10
     epd.display(epd.getbuffer(Limage))
 
 except IOError as e:

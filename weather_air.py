@@ -61,12 +61,14 @@ def get_air_quality():
         pollution_number.append(pollutant_item.get_text())
 
     results = zip(pollution_number, pollution_data)
+    text_results = []
     for r in results:
         clean_str = r[1].replace(r[0], '', 1)
         data = parse_units(clean_str)
         remark = severity(int(r[0]))[0]
-        print(data[0], ": ", r[0], " ", remark)
-
+        t = f"{data[0]} {r[0]} {remark}"
+        text_results.append(t)
+    return text_results
 
 if __name__ == "__main__":
     get_air_quality()
