@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# File              : update_display.py
+# Author            : Nathan Gilbert <nathan.gilbert@gmail.com>
+# Date              : 01.23.2022 16:28:48
+# Last Modified Date: 01.23.2022 16:30:43
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 import sys
@@ -39,7 +45,7 @@ try:
     current_time = datetime.datetime.now()
     formatted_time = current_time.strftime("%d %a %b")
     draw.text((2, 0), formatted_time, font=font34, fill=0)
-    draw.text((2, 0), adbe, font=font24, fill=0)
+    draw.text((10, 100), str(adbe), font=font24, fill=0)
     epd.display(epd.getbuffer(Limage))
 
 except IOError as e:
