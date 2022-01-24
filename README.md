@@ -1,6 +1,9 @@
 # rasperrybi-epaper-dashboard
 Simple dashboard for Waveshare 2.7" e-Paper Display
 
+Currently displays the date, a stock I want to track and the Air Quality 
+near my home (via weather.com)
+
 ## Information
 
 - <https://dev.to/ranewallin/getting-started-with-the-waveshare-2-7-epaper-hat-on-raspberry-pi-41m8>
