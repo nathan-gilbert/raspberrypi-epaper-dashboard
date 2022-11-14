@@ -50,7 +50,7 @@ def get_air_quality():
 
     # Get all the air quality pollutants, levels and severities
     pollution_data = []
-    for item in (soup.find_all('div', class_="AirQuality--dial--1KzM9")):
+    for item in (soup.find_all('div', class_="AirQuality--dial--3TK5w")):
         pollution_data.append(item.get_text())
 
     pollution_number = []
