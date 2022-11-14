@@ -1,7 +1,7 @@
 # rasperrybi-epaper-dashboard
 Simple dashboard for Waveshare 2.7" e-Paper Display
 
-Currently displays the date, a stock I want to track and the Air Quality 
+Currently displays the date, a stock I want to track and the Air Quality
 near my home (via weather.com)
 
 ## Information
@@ -12,8 +12,13 @@ near my home (via weather.com)
 
 ## Running
 
-- Must link the `lib` and `pic` directories from the Waveshare repo into 
+- Must link the `lib` and `pic` directories from the Waveshare repo into
   this repo
 - Follow the instructions in the links above to connect the display to your Pi
 - Install dependencies: `pip3 install -r requirements.txt`
 - Run: `sudo python3 update_display`
+
+## TODO
+
+- Read config from a file
+- refactor so there are true modules
