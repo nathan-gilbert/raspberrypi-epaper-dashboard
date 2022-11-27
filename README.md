@@ -1,6 +1,6 @@
-# raspberrypi-epaper-dashboard
+# RaspberryPi ePaper Dashboard
 
-Simple dashboard for Waveshare 2.7" e-Paper Display
+Simple dashboard for a Waveshare 2.7" e-Paper Display for a Raspberry Pi.
 
 Currently displays the date, a stock I want to track and the Air Quality
 near my home (via weather.com)
@@ -21,5 +21,6 @@ near my home (via weather.com)
 
 ## TODO
 
+- finish module refactor
 - Read config from a file
-- refactor so there are true modules
+- Fix lint errors

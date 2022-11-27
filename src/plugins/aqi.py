@@ -69,6 +69,3 @@ def get_air_quality():
         t = f"{data[0]} {r[0]} {remark}"
         text_results.append(t)
     return text_results
-
-if __name__ == "__main__":
-    get_air_quality()
