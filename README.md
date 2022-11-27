@@ -1,4 +1,5 @@
-# rasperrybi-epaper-dashboard
+# raspberrypi-epaper-dashboard
+
 Simple dashboard for Waveshare 2.7" e-Paper Display
 
 Currently displays the date, a stock I want to track and the Air Quality
