@@ -57,8 +57,6 @@ class RaspberryPiEpaperDashboard:
         :rtype:
         """
         try:
-            adbe = get_stock_price('ADBE')
-            aqi = get_air_quality()
 
             logging.info("epd2in7 Dashboard")
 
@@ -78,9 +76,11 @@ class RaspberryPiEpaperDashboard:
             draw = ImageDraw.Draw(l_image)
             current_time = datetime.datetime.now()
             formatted_date = current_time.strftime("%d %a %b")
+            adbe = get_stock_price('ADBE')
             draw.text((2, 0), formatted_date, font=font34, fill=0)
             draw.text((5, 35), "ADBE: $" + str(adbe), font=font24, fill=0)
             offset = 0
+            aqi = get_air_quality()
             for aq_metric in aqi:
                 draw.text((5, 70 + offset), aq_metric, font=font18, fill=0)
                 offset += 15
