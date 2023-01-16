@@ -95,7 +95,7 @@ class RaspberryPiEpaperDashboard:
                               f"{aq_metric}: {val:.2f}",
                               font=font18, fill=0)
                 offset += 15
-            draw.text((90, 70 + offset + 50),
+            draw.text((90, 70 + offset + 40),
                       current_time.strftime("%I:%M %p"),
                       font=font12,
                       fill=0)
