@@ -85,9 +85,15 @@ class RaspberryPiEpaperDashboard:
             for aq_metric, val in aqi.items():
                 if aq_metric == "timestamp":
                     continue
-                draw.text((5, 70 + offset),
-                          f"{aq_metric}: {val:.2f}",
-                          font=font18, fill=0)
+
+                if aq_metric.endswith("_level"):
+                    draw.text((5, 70 + offset),
+                              f"{aq_metric}: {val}",
+                              font=font18, fill=0)
+                else:
+                    draw.text((5, 70 + offset),
+                              f"{aq_metric}: {val:.2f}",
+                              font=font18, fill=0)
                 offset += 15
             draw.text((90, 70 + offset + 50),
                       current_time.strftime("%I:%M %p"),
