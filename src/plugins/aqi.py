@@ -3,15 +3,11 @@
 """
 import csv
 from typing import Dict
-from collections import namedtuple
 
 import requests
 
 
-AQI = namedtuple("AQI", ["ozone", "ozone_8hr_avg", "pm25",
-                         "pm25_24hr_avg", "nox", "no2", "co", "timestamp"])
-
-def get_air_quality() -> AQI:
+def get_air_quality() -> Dict[str, float]:
     """
 
     :return:
@@ -26,9 +22,17 @@ def get_air_quality() -> AQI:
         reader = csv.DictReader(decoded_content.splitlines(),
                                      delimiter='\t')
         for row in reader:
-            return AQI(row["ozone"], row["ozone_8hr_avg"], row["pm25"], \
-                row["pm25_24hr_avg"], row["nox"], row["no2"], row["co"],
-                       row["dtstamp"])
+            return {
+                "ozone": row["ozone"],
+                "ozone_8ht_avg": row["ozone_8hr_avg"],
+                "pm25": row["pm25"],
+                "pm25_24hr_avg": row["pm25_24hr_avg"],
+                "nox": row["nox"],
+                "no2": row["no2"],
+                "co": row["co"],
+                "timestamp": row["dtstamp"]
+            }
+
 
 if __name__ == "__main__":
     aqi = get_air_quality()

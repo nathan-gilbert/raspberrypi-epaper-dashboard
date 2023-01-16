@@ -81,8 +81,10 @@ class RaspberryPiEpaperDashboard:
             draw.text((5, 35), "ADBE: $" + str(adbe), font=font24, fill=0)
             offset = 0
             aqi = get_air_quality()
-            for aq_metric in aqi:
-                draw.text((5, 70 + offset), aq_metric, font=font18, fill=0)
+            for aq_metric, val in aqi.items():
+                draw.text((5, 70 + offset),
+                          f"{aq_metric}:{val}",
+                          font=font18, fill=0)
                 offset += 15
             draw.text((90, 70 + offset + 80),
                       current_time.strftime("%I:%M %p"),
