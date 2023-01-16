@@ -2,12 +2,12 @@
 
 """
 import csv
-from typing import Dict
+from typing import Dict, Union
 
 import requests
 
 
-def get_air_quality() -> Dict[str, float]:
+def get_air_quality() -> Dict[str, Union[float, str]]:
     """
 
     :return:

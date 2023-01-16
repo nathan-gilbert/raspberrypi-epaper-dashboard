@@ -83,6 +83,8 @@ class RaspberryPiEpaperDashboard:
             offset = 0
             aqi = get_air_quality()
             for aq_metric, val in aqi.items():
+                if aq_metric == "timestamp":
+                    continue
                 draw.text((5, 70 + offset),
                           f"{aq_metric}: {val:.2f}",
                           font=font18, fill=0)
