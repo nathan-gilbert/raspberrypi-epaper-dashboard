@@ -78,12 +78,13 @@ class RaspberryPiEpaperDashboard:
             formatted_date = current_time.strftime("%d %a %b")
             adbe = get_stock_price('ADBE')
             draw.text((2, 0), formatted_date, font=font34, fill=0)
-            draw.text((5, 35), "ADBE: $" + str(adbe), font=font24, fill=0)
+            draw.text((5, 35), f"ADBE: ${adbe:.2f}", font=font24, fill=0)
+
             offset = 0
             aqi = get_air_quality()
             for aq_metric, val in aqi.items():
                 draw.text((5, 70 + offset),
-                          f"{aq_metric}:{val}",
+                          f"{aq_metric}: {val:.2f}",
                           font=font18, fill=0)
                 offset += 15
             draw.text((90, 70 + offset + 80),
