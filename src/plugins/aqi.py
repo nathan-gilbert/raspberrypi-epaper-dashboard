@@ -3,6 +3,7 @@
 """
 import csv
 from typing import Dict, Union
+from datetime import datetime
 
 import requests
 
@@ -14,6 +15,7 @@ def get_air_quality() -> Dict[str, Union[float, str]]:
     :rtype:
     """
     api_url = "https://air.utah.gov/csvFeed.php?id=nr"
+    format = "%m/%d/%Y %H:%M:%S"
 
     with requests.Session() as sesh:
         download = sesh.get(api_url)
@@ -23,14 +25,14 @@ def get_air_quality() -> Dict[str, Union[float, str]]:
                                      delimiter='\t')
         for row in reader:
             return {
-                "ozone": row["ozone"],
-                "ozone_8ht_avg": row["ozone_8hr_avg"],
-                "pm25": row["pm25"],
-                "pm25_24hr_avg": row["pm25_24hr_avg"],
-                "nox": row["nox"],
-                "no2": row["no2"],
-                "co": row["co"],
-                "timestamp": row["dtstamp"]
+                "ozone": float(row["ozone"]),
+                "ozone_8ht_avg": float(row["ozone_8hr_avg"]),
+                "pm25": float(row["pm25"]),
+                "pm25_24hr_avg": float(row["pm25_24hr_avg"]),
+                "nox": float(row["nox"]),
+                "no2": float(row["no2"]),
+                "co": float(row["co"]),
+                "timestamp": datetime.strptime(row["dtstamp"], format)
             }
 
 
