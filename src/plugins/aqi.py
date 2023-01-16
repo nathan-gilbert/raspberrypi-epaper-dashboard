@@ -8,14 +8,14 @@ from datetime import datetime
 import requests
 
 
-def get_air_quality() -> Dict[str, Union[float, str]]:
+def get_air_quality() -> Dict[str, Union[float, datetime]]:
     """
 
     :return:
     :rtype:
     """
     api_url = "https://air.utah.gov/csvFeed.php?id=nr"
-    format = "%m/%d/%Y %H:%M:%S"
+    timestamp_format = "%m/%d/%Y %H:%M:%S"
 
     with requests.Session() as sesh:
         download = sesh.get(api_url)
@@ -32,7 +32,7 @@ def get_air_quality() -> Dict[str, Union[float, str]]:
                 "nox": float(row["nox"]),
                 "no2": float(row["no2"]),
                 "co": float(row["co"]),
-                "timestamp": datetime.strptime(row["dtstamp"], format)
+                "timestamp": datetime.strptime(row["dtstamp"], timestamp_format)
             }
 
 
