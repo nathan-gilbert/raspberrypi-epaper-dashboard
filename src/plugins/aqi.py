@@ -8,6 +8,52 @@ from datetime import datetime
 import requests
 
 
+def ozone_metrics(ozone_level: float) -> str:
+    """
+
+    :param ozone_level:
+    :type ozone_level:
+    :return:
+    :rtype:
+    """
+    if ozone_level <= 0.054:
+        return "GOOD"
+    if 0.054 < ozone_level <= 0.070:
+        return "MODERATE"
+    if 0.070 < ozone_level <= 0.085:
+        return "UNHEALTHY 1"
+    if 0.080 < ozone_level <= 0.105:
+        return "UNHEALTHY 2"
+    if 0.105 < ozone_level <= 0.2:
+        return "UNHEALTHY 3!"
+    if ozone_level > 0.2:
+        return "HAZARDOUS!!"
+    return "UNKNOWN"
+
+
+def pm25_metrics(pm25_level: float) -> str:
+    """
+
+    :param pm25_level:
+    :type pm25_level:
+    :return:
+    :rtype:
+    """
+    if pm25_level <= 12.0:
+        return "GOOD"
+    if 12.0 < pm25_level <= 35.4:
+        return "MODERATE"
+    if 35.4 < pm25_level <= 55.4:
+        return "UNHEALTHY 1"
+    if 55.4 < pm25_level <= 150.4:
+        return "UNHEALTHY 2"
+    if 150.4 < pm25_level <= 250.4:
+        return "UNHEALTHY 3!"
+    if pm25_level > 250.4:
+        return "HAZARDOUS!!"
+    return "UNKNOWN"
+
+
 def get_air_quality() -> Dict[str, Union[float, datetime]]:
     """
 
@@ -26,9 +72,11 @@ def get_air_quality() -> Dict[str, Union[float, datetime]]:
         for row in reader:
             return {
                 "ozone": float(row["ozone"]),
-                "ozone_8hr_avg": float(row["ozone_8hr_avg"]),
+                "ozone_level": ozone_metrics(float(row["ozone"])),
+                "ozone_8hr": float(row["ozone_8hr_avg"]),
                 "pm25": float(row["pm25"]),
-                "pm25_24hr_avg": float(row["pm25_24hr_avg"]),
+                "pm25_level": pm25_metrics(float(row["pm25"])),
+                "pm25_24hr": float(row["pm25_24hr_avg"]),
                 "nox": float(row["nox"]),
                 "no2": float(row["no2"]),
                 "co": float(row["co"]),
