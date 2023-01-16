@@ -8,8 +8,8 @@ import logging
 from src.plugins.aqi import get_air_quality
 from src.plugins.stock_quotes import get_stock_price
 
-picdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), './pic')
-libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), './lib')
+picdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../pic')
+libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../lib')
 if os.path.exists(libdir):
     sys.path.append(libdir)
     # pylint: disable=import-error
