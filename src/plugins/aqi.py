@@ -26,7 +26,7 @@ def get_air_quality() -> Dict[str, Union[float, datetime]]:
         for row in reader:
             return {
                 "ozone": float(row["ozone"]),
-                "ozone_8ht_avg": float(row["ozone_8hr_avg"]),
+                "ozone_8hr_avg": float(row["ozone_8hr_avg"]),
                 "pm25": float(row["pm25"]),
                 "pm25_24hr_avg": float(row["pm25_24hr_avg"]),
                 "nox": float(row["nox"]),
