@@ -1,5 +1,4 @@
-from src.raspberrypi_epaper_dashboard.raspberrypi_dashboard \
-    import RaspberryPiEpaperDashboard
+from src.raspberrypi_epaper_dashboard.raspberrypi_dashboard import RaspberryPiEpaperDashboard
 
 if __name__ == "__main__":
     dashboard = RaspberryPiEpaperDashboard()

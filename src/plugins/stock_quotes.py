@@ -1,6 +1,5 @@
-"""
+""" """
 
-"""
 import yfinance as yf
 
 
@@ -13,9 +12,9 @@ def get_stock_price(ticker_symbol: str = "ADBE") -> float:
     :rtype:
     """
     stock = yf.Ticker(ticker_symbol)
-    today_data = stock.history(period='1d')
-    last_price = today_data['Close'][0]
-    #return stock.info["regularMarketPrice"]
+    today_data = stock.history(period="1d")
+    last_price = today_data["Close"][0]
+    # return stock.info["regularMarketPrice"]
     return last_price
 
 

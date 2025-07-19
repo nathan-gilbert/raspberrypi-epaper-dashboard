@@ -1,9 +1,8 @@
-"""
+""" """
 
-"""
 import csv
-from typing import Dict, Union
 from datetime import datetime
+from typing import Dict, Union
 
 import requests
 
@@ -65,10 +64,9 @@ def get_air_quality() -> Dict[str, Union[float, datetime]]:
 
     with requests.Session() as sesh:
         download = sesh.get(api_url)
-        decoded_content = download.content.decode('utf-8')
+        decoded_content = download.content.decode("utf-8")
 
-        reader = csv.DictReader(decoded_content.splitlines(),
-                                     delimiter='\t')
+        reader = csv.DictReader(decoded_content.splitlines(), delimiter="\t")
         for row in reader:
             return {
                 "ozone": float(row["ozone"]),
@@ -80,7 +78,7 @@ def get_air_quality() -> Dict[str, Union[float, datetime]]:
                 "nox": float(row["nox"]),
                 "no2": float(row["no2"]),
                 "co": float(row["co"]),
-                "timestamp": datetime.strptime(row["dtstamp"], timestamp_format)
+                "timestamp": datetime.strptime(row["dtstamp"], timestamp_format),
             }
 
 

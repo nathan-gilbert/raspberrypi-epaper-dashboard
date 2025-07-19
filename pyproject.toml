@@ -1,0 +1,107 @@
+[project]
+name = "raspberry-pi-info-screen"
+description = ""
+requires-python = ">=3.11"
+keywords = []
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+dynamic = [ "version", "readme",]
+
+[[project.authors]]
+name = "Nathan Gilbert"
+email = "nathan.gilbert@gmail.com"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [ "E", "F",]
+ignore = []
+fixable = [ "A", "B", "C", "D", "E", "F",]
+unfixable = []
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.pyright]
+include = [ "src",]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/venv",
+    "**/tests",
+    "src/testeract_hwlib/devices/device_types/dc_power_supply/keysight_n_6700.py",
+]
+venvPath = "venv"
+reportMissingImports = true
+reportMissingTypeStubs = false
+pythonVersion = "3.13"
+pythonPlatform = "Windows"
+
+[[tool.pyright.executionEnvironments]]
+root = "src"
+
+[tool.black]
+line-length = 100
+target-version = [ "py313", "py312", "py311", "py310", "py39",]
+preview = false
+
+[tool.licensecheck]
+using = "requirements:requirements.txt"
+format = "simple"
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+addopts = "--maxfail=10"
+mock_use_standalone_module = true
+testpaths = [ "tests",]
+pythonpath = [ "src", "tests",]
+
+[tool.coverage.run]
+source = [ "src",]
+omit = [ "tests/*", "**/api/*", "scripts/*", "conftest.py", "docs/*",]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.radon]
+ignore = "venv"
+
+[tool.bandit]
+exclude_dirs = [ "tests", "venv",]
