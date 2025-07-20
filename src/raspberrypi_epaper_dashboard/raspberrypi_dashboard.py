@@ -9,10 +9,11 @@ import sys
 
 from src.plugins.aqi import get_air_quality
 
-picdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../pic")
-libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../lib")
-if os.path.exists(libdir):
-    sys.path.append(libdir)
+pic_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../pic")
+lib_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../lib")
+
+if os.path.exists(lib_dir):
+    sys.path.append(lib_dir)
     from PIL import Image, ImageDraw, ImageFont
     from waveshare_epd import epd2in7
 
@@ -64,10 +65,10 @@ class RaspberryPiEpaperDashboard:
             logging.info("Initialize and clear screen.")
             self._display.init()
             self._display.Clear(0xFF)
-            font12 = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 12)
-            font18 = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 18)
-            # font24 = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 24)
-            # font34 = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 34)
+            font12 = ImageFont.truetype(os.path.join(pic_dir, "Font.ttc"), 12)
+            font18 = ImageFont.truetype(os.path.join(pic_dir, "Font.ttc"), 18)
+            # font24 = ImageFont.truetype(os.path.join(pic_dir, "Font.ttc"), 24)
+            # font34 = ImageFont.truetype(os.path.join(pic_dir, "Font.ttc"), 34)
 
             # Drawing on the Vertical image
             logging.info("Drawing on the Vertical image...")
