@@ -7,6 +7,8 @@ import logging
 import os
 import sys
 
+from PIL import Image, ImageDraw, ImageFont
+
 from src.plugins.aqi import get_air_quality
 
 pic_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../pic")
@@ -14,7 +16,6 @@ lib_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../lib")
 
 if os.path.exists(lib_dir):
     sys.path.append(lib_dir)
-    from PIL import Image, ImageDraw, ImageFont
     from waveshare_epd import epd2in7
 
 
