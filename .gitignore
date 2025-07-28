@@ -126,5 +126,3 @@ dmypy.json
 .pyre/
 pic
 lib
-
-.python-version
