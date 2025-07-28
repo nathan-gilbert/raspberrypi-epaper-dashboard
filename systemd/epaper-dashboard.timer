@@ -1,0 +1,11 @@
+[Unit]
+Description=Run E-Paper Dashboard every 15 minutes
+Requires=epaper-dashboard.service
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=15min
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

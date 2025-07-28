@@ -1,0 +1,27 @@
+[Unit]
+Description=Raspberry Pi E-Paper Dashboard
+After=network.target
+Wants=network.target
+
+[Service]
+Type=oneshot
+User=nathan
+Group=nathan
+WorkingDirectory=/home/nathan/Projects/raspberrypi-epaper-dashboard
+Environment=PYTHONPATH=/home/pi/Projects/raspberrypi-epaper-dashboard/src
+ExecStart=/home/nathan/Projects/raspberrypi-epaper-dashboard/venv/bin/python /home/nathan/Projects/raspberrypi-epaper-dashboard/example.py
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=epaper-dashboard
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/nathan/Projects/raspberrypi-epaper-dashboard
+CapabilityBoundingSet=CAP_SYS_RAWIO
+AmbientCapabilities=CAP_SYS_RAWIO
+
+[Install]
+WantedBy=multi-user.target
