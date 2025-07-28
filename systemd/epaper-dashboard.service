@@ -8,7 +8,7 @@ Type=oneshot
 User=nathan
 Group=nathan
 WorkingDirectory=/home/nathan/Projects/raspberrypi-epaper-dashboard
-Environment=PYTHONPATH=/home/pi/Projects/raspberrypi-epaper-dashboard/src
+Environment=PYTHONPATH=/home/nathan/Projects/raspberrypi-epaper-dashboard/src
 ExecStart=/home/nathan/Projects/raspberrypi-epaper-dashboard/venv/bin/python /home/nathan/Projects/raspberrypi-epaper-dashboard/example.py
 StandardOutput=journal
 StandardError=journal
